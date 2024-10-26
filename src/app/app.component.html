@@ -2,7 +2,7 @@
   <form [formGroup]="chatForm" class="g-3 p-20">
     <div class="row">
       <div class="col-md-auto">
-        <label for="apiKey" class="form-label">API Key</label>
+        <label for="apiKey" class="form-label">API</label>
         <input
           type="text"
           class="form-control"
@@ -11,7 +11,7 @@
         />
       </div>
       <div class="col-md-auto">
-        <label for="model" class="form-label">Model</label>
+        <label for="model" class="form-label">Modelo</label>
         <select class="form-select" id="model" formControlName="model">
           @for (option of modelOptions; track option) {
           <option [disabled]="option.disabled" [value]="option.value">
@@ -21,7 +21,7 @@
         </select>
       </div>
       <div class="col-md-auto">
-        <label for="temperature" class="form-label">Temperature</label>
+        <label for="temperature" class="form-label">Temperatura</label>
         <select
           class="form-select"
           id="temperature"
@@ -51,7 +51,7 @@
   <div class="chat-title">
     <h1>{{ chatForm.value.bot.id ? "Gemini" : "GDGTGU " }}</h1>
     <h2>
-      {{ chatForm.value.bot.id ? "Google Deep Mind " : "Frontend Developer" }}
+      {{ chatForm.value.bot.id ? "Google Deep Mind " : "Asistente Frontend" }}
     </h2>
     <figure class="avatar">
       <img
@@ -65,7 +65,7 @@
   </div>
   <div #messagesContainer class="messages">
     @if (messagesHistory.length < 1) {
-    <h2 class="welcome-message">Hello, How can I help today?</h2>
+    <h2 class="welcome-message">Hola como puedo ayudarte hoy?</h2>
     } @for ( message of messagesHistory; track message.role) { @if
     (message.parts) {
     <div [@typeWritterEffect] class="messages-content">
@@ -85,7 +85,7 @@
         ></i>
         &nbsp;
 
-        {{ message.role === "model" ? "AI" : "User" }}:&nbsp;</span
+        {{ message.role === "model" ? "AI" : "Usuario" }}:&nbsp;</span
       >
       <span class="text" [innerHTML]="message.parts | convertTextToHtml">
       </span>
@@ -132,7 +132,7 @@
       type="button"
       class="message-submit"
     >
-      Send
+      Enviar
     </button>
   </div>
 </div>

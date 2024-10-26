@@ -58,14 +58,14 @@ export class AppComponent {
     backdropBorderRadius: "3px",
   };
   public gQuestions = [
-    "What is the latest breaking news?",
-    "What is Angular?",
-    "What is new in Gemini Pro 1.5?",
+    "Dime noticias?",
+    "Que es Angular?",
+    "Que hay de nuevo en Gemini?",
   ];
   public bQuestions = [
-    "Can you ıntroduce yourself?",
-    "What kind of work do you do?",
-    "What is your mail adres?",
+    "Dime acerca de ti?",
+    "Que cosas puedes hacer?",
+    "Cual es tu direccion de Correo?",
   ];
 
   public characterSelection = [
@@ -80,9 +80,9 @@ export class AppComponent {
   ];
 
   temperatureOptions = [
-    { value: 0.2, label: "Low Creativity" },
-    { value: 0.5, label: "Moderate Creativity" },
-    { value: 0.9, label: "High Creativity" },
+    { value: 0.2, label: "Poco Creativo" },
+    { value: 0.5, label: "Moderadamente Creativito" },
+    { value: 0.9, label: "Altamente Creativito" },
   ];
 
   modelOptions = [
@@ -141,10 +141,10 @@ export class AppComponent {
         },
         error: (error) => {
           this.loading = false;
-          console.error("Error generating content:", error);
+          console.error("Error generando contenido:", error);
           this.messagesHistory.push({
             role: "model",
-            parts: "Sorry, something went wrong. Please try again later.",
+            parts: "Disculpa, algo salio mal . vuelve a intentarlo.",
           });
           setTimeout(() => this.scrollToBottom(), 0);
         },
