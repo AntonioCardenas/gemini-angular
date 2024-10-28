@@ -6,7 +6,6 @@ import {
   inject,
 } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
-import { NgxLoadingModule, ngxLoadingAnimationTypes } from "ngx-loading";
 import { trigger, style, transition, animate } from "@angular/animations";
 import { DataService } from "./data.service";
 import { CommonModule } from "@angular/common";
@@ -26,7 +25,6 @@ import { API_KEY_CONF } from "../config";
   imports: [
     RouterOutlet,
     CommonModule,
-    NgxLoadingModule,
     ConvertTextToHtmlPipe,
     FormsModule,
     ReactiveFormsModule,
@@ -49,14 +47,7 @@ export class AppComponent {
   public userMessage!: string | null;
   public loading = false;
   public loadingTemplate!: TemplateRef<any>;
-  public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
-  public loadingConfig = {
-    animationType: ngxLoadingAnimationTypes.circleSwish,
-    primaryColour: "#ffffff",
-    secondaryColour: "#ccc",
-    tertiaryColour: "#dd0031",
-    backdropBorderRadius: "3px",
-  };
+
   public gQuestions = [
     "Dime noticias?",
     "Que es Angular?",
