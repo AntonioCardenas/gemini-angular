@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { ChatComponent } from './chat/chat.component';
-import { MultimodalComponent } from './multimodal/multimodal.component';
-import { ImagesComponent } from './images/images.component';
+import { ChatComponent } from './pages/chat/chat.component';
+import { MultimodalComponent } from './pages/multimodal/multimodal.component';
+import { ImagesComponent } from './pages/images/images.component';
 
 export const routes: Routes = [
   {

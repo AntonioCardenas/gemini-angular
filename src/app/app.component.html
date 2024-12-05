@@ -1,78 +1,12 @@
-<!DOCTYPE html>
-
-<mat-sidenav-container>
-  <mat-sidenav
-    #sidenav
-    mode="side"
-    opened
-    class="mat-elevation-z8"
-    [fixedInViewport]="true"
-    [fixedTopGap]="0"
-    [fixedBottomGap]="0"
-  >
-    <div class="flex flex-col items-start m-2">
-      @if (sidenav.opened) {
-      <button
-        mat-icon-button
-        aria-label="Example icon button with a menu icon"
-        (click)="sidenav.toggle()"
-      >
-        <mat-icon
-          fontIcon="menu_open"
-          aria-hidden="false"
-          aria-label="Menu Close"
-        >
-        </mat-icon>
-      </button>
-      }
-      <br />
-
-      <img
-        ngSrc
-        src="https://avatars.githubusercontent.com/u/47269217?v=4"
-        alt="Profile Picture"
-        class="self-center"
-        width="50"
-        height="50"
-      />
-      <br />
-      <button mat-button routerLink="/chat">
-        <mat-icon>chat</mat-icon>
-        <span>Chat</span>
-      </button>
-
-      <button mat-button class="menu-button" routerLink="/images">
-        <mat-icon>image</mat-icon>
-        <span>Images</span>
-      </button>
-
-      <button mat-button class="menu-button" routerLink="/multimodal">
-        <mat-icon>book_4_spark</mat-icon>
-        <span>Multimodal</span>
-      </button>
+<div class="relative h-screen overflow-hidden bg-gray-900">
+  <div class="flex items-start">
+    <overlay />
+    <sidebar mobileOrientation="end" />
+    <div class="flex h-screen w-full flex-col pl-0 lg:space-y-4 lg:pl-24">
+      <app-header />
+      <main class="h-screen overflow-auto px-2 pb-36 pt-4 md:pb-8 lg:px-4">
+        <router-outlet />
+      </main>
     </div>
-  </mat-sidenav>
-
-  <mat-sidenav-content>
-    <mat-toolbar class="example-header">
-      @if (!sidenav.opened) {
-      <button
-        mat-icon-button
-        aria-label="Example icon button with a menu icon"
-        (click)="sidenav.toggle()"
-      >
-        <mat-icon
-          class="mirror"
-          fontIcon="menu_open"
-          aria-hidden="false"
-          aria-label=""
-        >
-        </mat-icon>
-      </button>
-      } Angular Gemini
-    </mat-toolbar>
-    <div class="m-4 rounded-md p-6 bg-white">
-      <router-outlet />
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  </div>
+</div>
