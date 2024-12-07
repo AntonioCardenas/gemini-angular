@@ -20,25 +20,24 @@ import { GeminiConfig } from "./chat-form";
 import { API_KEY_CONF } from "../config";
 
 @Component({
-  selector: "app-root",
-  standalone: true,
-  imports: [
-    RouterOutlet,
-    CommonModule,
-    ConvertTextToHtmlPipe,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
-  templateUrl: "./app.component.html",
-  styleUrl: "./app.component.scss",
-  animations: [
-    trigger("typeWritterEffect", [
-      transition(":enter", [
-        style({ opacity: 0 }),
-        animate("2s", style({ opacity: 1 })),
-      ]),
-    ]),
-  ],
+    selector: "app-root",
+    imports: [
+        RouterOutlet,
+        CommonModule,
+        ConvertTextToHtmlPipe,
+        FormsModule,
+        ReactiveFormsModule,
+    ],
+    templateUrl: "./app.component.html",
+    styleUrl: "./app.component.scss",
+    animations: [
+        trigger("typeWritterEffect", [
+            transition(":enter", [
+                style({ opacity: 0 }),
+                animate("2s", style({ opacity: 1 })),
+            ]),
+        ]),
+    ]
 })
 export class AppComponent {
   @ViewChild("messagesContainer") private messagesContainer!: ElementRef;
