@@ -1,53 +1,47 @@
-<div class="d-flex justify-content-center align-items-center">
-  <form [formGroup]="chatForm" class="g-3 p-20">
-    <div class="row">
-      <div class="col-md-auto">
-        <label for="apiKey" class="form-label">API</label>
+<div class="">
+<div class="">
+  <form [formGroup]="chatForm" class="grid gap-3 p-5">
+    <div class="grid grid-cols-4 gap-4">
+      <div class="">
+        <label for="apiKey" class="block text-sm font-medium text-gray-700">API</label>
         <input
           type="text"
-          class="form-control"
+          class="input mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-slate-900 focus:ring-slate-900 sm:text-sm"
           id="api-key"
           formControlName="apiKey"
         />
       </div>
-      <div class="col-md-auto">
-        <label for="model" class="form-label">Modelo</label>
-        <select class="form-select" id="model" formControlName="model">
-          @for (option of modelOptions; track option) {
-          <option [disabled]="option.disabled" [value]="option.value">
+      <div class="">
+        <label for="model" class="block text-sm font-medium text-gray-700">Modelo</label>
+        <select class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-slate-900 focus:ring-slate-900 sm:text-sm" id="model" formControlName="model">
+          <option *ngFor="let option of modelOptions" [disabled]="option.disabled" [value]="option.value">
             {{ option.label }}
           </option>
-          }
         </select>
       </div>
-      <div class="col-md-auto">
-        <label for="temperature" class="form-label">Temperatura</label>
+      <div class="">
+        <label for="temperature" class="block text-sm font-medium text-gray-700">Temperatura</label>
         <select
-          class="form-select"
+          class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-slate-900 focus:ring-slate-900 sm:text-sm"
           id="temperature"
           formControlName="temperature"
         >
-          @for( option of temperatureOptions; track option.value) {
-          <option [value]="option.value">{{ option.label }}</option>
-          }
+          <option *ngFor="let option of temperatureOptions" [value]="option.value">{{ option.label }}</option>
         </select>
       </div>
-      <div class="col-md-auto">
-        <label for="character-select" class="form-label">Bot</label>
-        <select class="form-select" formControlName="bot">
-          @for (item of characterSelection; track item.id) {
-          <option [ngValue]="item">
+      <div class="">
+        <label for="character-select" class="block text-sm font-medium text-gray-700">Bot</label>
+        <select class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-slate-900 focus:ring-slate-900 sm:text-sm" formControlName="bot">
+          <option *ngFor="let item of characterSelection" [ngValue]="item">
             {{ "Talk to " + item.value }}
           </option>
-          }
         </select>
       </div>
     </div>
   </form>
 </div>
 
-@if (chatForm.value.bot) {
-<div class="chat">
+<div *ngIf="chatForm.value.bot" class="text-sm">
   <div class="chat-title">
     <h1>{{ chatForm.value.bot.id ? "Gemini" : "GDGWokshop " }}</h1>
     <h2>
@@ -60,15 +54,13 @@
             ? 'assets/images/google-gemini-icon.svg'
             : 'assets/images/GDGWokshop.png'
         "
+        class="rounded-full w-32 h-32 " 
       />
     </figure>
   </div>
-  <div #messagesContainer class="messages">
-    @if (messagesHistory.length < 1) {
-    <h2 class="welcome-message">Hola como puedo ayudarte hoy?</h2>
-    } @for ( message of messagesHistory; track message.role) { @if
-    (message.parts) {
-    <div [@typeWritterEffect] class="messages-content">
+  <div #messagesContainer class="flex justify-center">
+    <h2 *ngIf="messagesHistory.length < 1" class="welcome-message">Hola como puedo ayudarte hoy?</h2>
+    <div *ngFor="let message of messagesHistory" [@typeWritterEffect] class="messages-content">
       <span
         [ngClass]="{
           gemini: message.role === 'model',
@@ -90,50 +82,46 @@
       <span class="text" [innerHTML]="message.parts | convertTextToHtml">
       </span>
     </div>
-    } }
 
     <div class="loading-container">
       <div class="loading">
       </div>
     </div>
   </div>
-  <div class="message-box">
-    <div class="prepared-messages">
-      @if (!chatForm.value.bot.id) {
-      <ul [@typeWritterEffect]>
-        @for (question of bQuestions; track question) {
-        <li (click)="sendMessage(question); userMessage = ''">
+  <div class="message-box ">
+    <div class="prepared-messages  flex justify-center">
+      <ul *ngIf="!chatForm.value.bot.id" [@typeWritterEffect]>
+        <li *ngFor="let question of bQuestions" (click)="sendMessage(question); userMessage = ''">
           {{ question }}
         </li>
-        }
       </ul>
-      } @else {
-      <ul [@typeWritterEffect]>
-        @for (question of gQuestions; track question) {
-        <li (click)="sendMessage(question); userMessage = ''">
+      <ul *ngIf="chatForm.value.bot.id" [@typeWritterEffect]>
+        <li *ngFor="let question of gQuestions" (click)="sendMessage(question); userMessage = ''">
           {{ question }}
         </li>
-        }
       </ul>
-      }
     </div>
-    <textarea
+    <div class="flex justify-center">
+      <textarea
       [(ngModel)]="userMessage"
       (keydown.enter)="sendMessage(userMessage!); userMessage = null"
       type="text"
-      class="message-input"
+      class="w-1/2 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-slate-500 focus:ring-slate-500 sm:text-sm"
       [placeholder]="'Ask ' + chatForm.value.bot.value"
       rows="2"
     ></textarea>
+    
     <button
       (click)="sendMessage(userMessage!); userMessage = null"
       [disabled]="!userMessage || loading"
       type="button"
-      class="message-submit"
+      class="message-submit mt-2 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-slate-600 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
     >
       Enviar
     </button>
+    </div>
+   
   </div>
 </div>
-}
 <router-outlet></router-outlet>
+</div>
