@@ -77,12 +77,12 @@ export class AppComponent {
   ];
 
   modelOptions = [
-    { label: "Gemini v1.0.0-Pro (Basic)", value: "gemini-1.0-pro" },
-    { label: "Gemini v1.0.0-Pro-001 (Updated)", value: "gemini-1.0-pro-001" },
+    { label: "Gemini 1.5 Flash", value: "gemini-1.5-flash" },
+    { label: "Gemini 1.5 Flash-8B(Alto Volumen)", value: "gemini-1.5-flash-8b" },
     {
-      label: "Gemini v1.5 (Experimental)",
+      label: "Gemini 1.5 Pro",
       value: "gemini-1.5-pro",
-      disabled: true,
+      disabled: false,
     },
   ];
 
