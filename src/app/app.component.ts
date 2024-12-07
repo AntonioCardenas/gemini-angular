@@ -62,7 +62,7 @@ export class AppComponent {
   public characterSelection = [
     {
       id: 0,
-      value: "GDGTGU",
+      value: "GDG Workshop",
     },
     {
       id: 1,

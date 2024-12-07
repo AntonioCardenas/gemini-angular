@@ -4,10 +4,21 @@ import {
   HarmBlockThreshold,
   HarmCategory,
 } from "@google/generative-ai";
-import { parts } from "../app/prompt/GDGTGU";
+import { parts } from "../app/prompt/GDGWorkshop";
 import { from } from "rxjs";
 import { GeminiConfig } from "./chat-form";
 import { API_KEY_CONF } from "../config";
+
+interface Part {
+  // Define the properties of Part here
+  content: string;
+}
+
+interface Content {
+  role: string;
+  parts: Part[];
+}
+
 
 
 @Injectable({
